@@ -34,7 +34,5 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.MapHub<GameHub>("/gameHub");
 
-throw new NotImplementedException();
-
 app.Run();
 

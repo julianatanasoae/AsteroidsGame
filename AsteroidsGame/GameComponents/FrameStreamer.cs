@@ -65,17 +65,21 @@ namespace Asteroids.GameComponents
             }
         }
 
+        // This method starts the streaming of frames to clients using SignalR.
         public async Task StartStreamingAsync()
         {
             var cancellationToken = cancellationTokenSource.Token;
             while (!cancellationToken.IsCancellationRequested)
             {
+                // Check if there is a frame available in the frameQueue
                 if (frameQueue.TryDequeue(out var frame))
                 {
+                    // Send the frame to all connected clients
                     await hubContext.Clients.All.SendAsync("updateFrame", frame);
                 }
                 else
                 {
+                    // Wait for a short delay before checking the frameQueue again
                     await Task.Delay(20);
                 }
             }
