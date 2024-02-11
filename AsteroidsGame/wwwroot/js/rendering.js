@@ -7,7 +7,7 @@ var gameframe;
 connection.on("updateFrame", function (frame) {
     // Handle the frame object here
     gameframe = frame;
-    render(frame);
+    renderFrame(frame);
 });
 
 connection.start().catch(function (err) {
@@ -27,7 +27,7 @@ const backgroundImg = new Image();
 backgroundImg.src = 'background.png';
 
 // Get canvas and context
-const canvas = document.getElementById('game');
+const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 // Draw background
